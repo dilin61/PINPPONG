@@ -10,18 +10,32 @@ clock = time.Clock()
 FPS = 60
 game = True
 class GameSprite(sprite.Sprite):
-    def __init__(self, image1, speed, x, y):
+    def __init__(self, image1, x, y, size_x, size_y, speed):
         super().__init__()
-        self.image = transform.scale(image.load(image1), (65, 65))
+        self.image = transform.scale(image.load(image1), (size_x, size_y))
         self.speed = speed
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
+class Player(GameSprite):
+    def update_left(self):
+        keys = key.get_pressed()
+        if keys[K_w] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_s] and self.rect.y < win_height - 65:
+            self.rect.y += self.speed
+    def update_raight(self):
+        keys = key.get_pressed()
+        if keys[K_UP] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_DOWN] and self.rect.y < win_height - 65:
+            self.rect.y += self.speed
 
-
-mach = GameSprite('images.jpg', 2, 200, 200)
+nevsk = Player('55638c18c50ca2a3ee9582d179a6d9f4.jpg',5, 250, 50, 150, 10)
+nevsk2 = Player('55638c18c50ca2a3ee9582d179a6d9f4.jpg',545, 250, 50, 150, 10)
+mach = GameSprite('images.jpg',260, 200, 60, 60, 4)
 
 while game:
     for e in event.get():
@@ -29,6 +43,11 @@ while game:
             game = False
     window.fill(back)
     mach.reset()
-    
+    nevsk.reset()
+    nevsk.update_left()
+    nevsk2.reset()
+    nevsk2.update_raight()
+    nevsk.update()
+    nevsk2.update()
     display.update()
     clock.tick(FPS)

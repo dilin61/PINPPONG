@@ -24,13 +24,13 @@ class Player(GameSprite):
         keys = key.get_pressed()
         if keys[K_w] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys[K_s] and self.rect.y < win_height - 65:
+        if keys[K_s] and self.rect.y < win_height - 125:
             self.rect.y += self.speed
     def update_raight(self):
         keys = key.get_pressed()
         if keys[K_UP] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys[K_DOWN] and self.rect.y < win_height - 65:
+        if keys[K_DOWN] and self.rect.y < win_height - 125:
             self.rect.y += self.speed
 
 nevsk = Player('55638c18c50ca2a3ee9582d179a6d9f4.jpg',5, 250, 50, 150, 10)
